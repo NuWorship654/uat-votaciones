@@ -3,12 +3,16 @@
  * Backend: Node.js + Express + sql.js + JWT + bcryptjs
  */
 
+// Permitir encontrar módulos tanto en /server/node_modules como en /node_modules raíz
+const path = require('path');
+const fs = require('fs');
+require('module').globalPaths.push(path.join(__dirname, '../node_modules'));
+require('module').globalPaths.push(path.join(__dirname, 'node_modules'));
+
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const path = require('path');
-const fs = require('fs');
 const initSqlJs = require('sql.js');
 
 const app = express();
