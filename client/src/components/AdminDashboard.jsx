@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState('')
 
   // Formulario candidato
-  const [formCandidato, setFormCandidato] = useState({ nombre: '', foto: '', carrera: '', semestre: '', descripcion: '', logros: '' })
+  const [formCandidato, setFormCandidato] = useState({ nombre: '', cargo: '', facultad_candidato: '', foto: '', descripcion: '', logros: '' })
   // Formulario usuario
   const [formUsuario, setFormUsuario] = useState({ matricula: '', nombre: '', password: '', rol: 'alumno', facultad: '' })
 
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
     const d = await r.json()
     if (r.ok) {
       mostrarMensaje(d.mensaje)
-      setFormCandidato({ nombre: '', foto: '', carrera: '', semestre: '', descripcion: '', logros: '' })
+      setFormCandidato({ nombre: '', cargo: '', facultad_candidato: '', foto: '', descripcion: '', logros: '' })
       cargarTab(TAB.CANDIDATOS)
     } else mostrarMensaje(d.error, true)
   }
@@ -188,15 +188,15 @@ export default function AdminDashboard() {
                   />
                   <input
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
-                    placeholder="Carrera (ej. Ingeniería en Sistemas)"
-                    value={formCandidato.carrera}
-                    onChange={e => setFormCandidato({ ...formCandidato, carrera: e.target.value })}
+                    placeholder="Cargo o puesto al que aplica (ej. Director, Representante)"
+                    value={formCandidato.cargo}
+                    onChange={e => setFormCandidato({ ...formCandidato, cargo: e.target.value })}
                   />
                   <input
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
-                    placeholder="Semestre (ej. 6° Semestre)"
-                    value={formCandidato.semestre}
-                    onChange={e => setFormCandidato({ ...formCandidato, semestre: e.target.value })}
+                    placeholder="Departamento / Facultad"
+                    value={formCandidato.facultad_candidato}
+                    onChange={e => setFormCandidato({ ...formCandidato, facultad_candidato: e.target.value })}
                   />
                   <input
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
@@ -212,7 +212,7 @@ export default function AdminDashboard() {
                   />
                   <textarea
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange sm:col-span-2"
-                    placeholder="Logros y experiencia (participaciones, actividades, reconocimientos...)" rows={2}
+                    placeholder="Trayectoria y experiencia" rows={2}
                     value={formCandidato.logros}
                     onChange={e => setFormCandidato({ ...formCandidato, logros: e.target.value })}
                   />

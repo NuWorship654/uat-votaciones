@@ -91,7 +91,7 @@ function createTables() {
   db.run(`CREATE TABLE IF NOT EXISTS candidatos (
     id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, partido TEXT DEFAULT '',
     foto TEXT DEFAULT '', descripcion TEXT, votos INTEGER DEFAULT 0,
-    carrera TEXT DEFAULT '', semestre TEXT DEFAULT '', logros TEXT DEFAULT '',
+    cargo TEXT DEFAULT '', facultad_candidato TEXT DEFAULT '', logros TEXT DEFAULT '',
     eleccion_id INTEGER, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`);
   db.run(`CREATE TABLE IF NOT EXISTS configuracion (
@@ -191,7 +191,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.get('/api/candidatos', autenticarToken, (req, res) => {
-  res.json(dbAll('SELECT id, nombre, partido, foto, descripcion, carrera, semestre, logros FROM candidatos WHERE eleccion_id = 1 ORDER BY id'));
+  res.json(dbAll('SELECT id, nombre, partido, foto, descripcion, cargo, facultad_candidato, logros FROM candidatos WHERE eleccion_id = 1 ORDER BY id'));
 });
 
 app.post('/api/votar', autenticarToken, (req, res) => {
@@ -259,10 +259,10 @@ app.put('/api/admin/configuracion', autenticarToken, esAdmin, (req, res) => {
 });
 
 app.post('/api/admin/candidatos', autenticarToken, esAdmin, (req, res) => {
-  const { nombre, partido, descripcion, foto, carrera, semestre, logros } = req.body;
+  const { nombre, cargo, facultad_candidato, descripcion, foto, logros } = req.body;
   if (!nombre) return res.status(400).json({ error: 'Nombre requerido' });
-  dbRun('INSERT INTO candidatos (nombre, partido, descripcion, foto, carrera, semestre, logros, eleccion_id) VALUES (?, ?, ?, ?, ?, ?, ?, 1)',
-    [nombre, partido || '', descripcion || '', foto || '', carrera || '', semestre || '', logros || '']);
+  dbRun('INSERT INTO candidatos (nombre, cargo, facultad_candidato, descripcion, foto, logros, eleccion_id) VALUES (?, ?, ?, ?, ?, ?, 1)',
+    [nombre, cargo || '', facultad_candidato || '', descripcion || '', foto || '', logros || '']);
   registrarBitacora(req.usuario.id, 'CREAR_CANDIDATO', `Candidato ${nombre} agregado`);
   res.status(201).json({ mensaje: 'Candidato agregado' });
 });
