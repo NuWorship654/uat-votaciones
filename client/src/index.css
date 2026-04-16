@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --uat-blue: #003087;
+  --uat-orange: #E8521A;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.btn-uat-orange {
+  @apply bg-uat-orange text-white font-semibold py-2 px-6 rounded-lg hover:bg-uat-orange-light transition-colors duration-200;
+}
+
+.btn-uat-blue {
+  @apply bg-uat-blue text-white font-semibold py-2 px-6 rounded-lg hover:bg-uat-blue-light transition-colors duration-200;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-md p-6;
+}

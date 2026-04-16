@@ -1,0 +1,12 @@
+{
+  "name": "uat-votaciones",
+  "version": "1.0.0",
+  "description": "Sistema de Votaciones Universitarias UAT",
+  "scripts": {
+    "build": "cd client && npm install && npm run build",
+    "start": "node server/server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
