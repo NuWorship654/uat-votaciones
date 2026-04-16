@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState('')
 
   // Formulario candidato
-  const [formCandidato, setFormCandidato] = useState({ nombre: '', partido: '', descripcion: '' })
+  const [formCandidato, setFormCandidato] = useState({ nombre: '', foto: '', carrera: '', semestre: '', descripcion: '', logros: '' })
   // Formulario usuario
   const [formUsuario, setFormUsuario] = useState({ matricula: '', nombre: '', password: '', rol: 'alumno', facultad: '' })
 
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
     const d = await r.json()
     if (r.ok) {
       mostrarMensaje(d.mensaje)
-      setFormCandidato({ nombre: '', partido: '', descripcion: '' })
+      setFormCandidato({ nombre: '', foto: '', carrera: '', semestre: '', descripcion: '', logros: '' })
       cargarTab(TAB.CANDIDATOS)
     } else mostrarMensaje(d.error, true)
   }
@@ -182,21 +182,39 @@ export default function AdminDashboard() {
                 <form onSubmit={agregarCandidato} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
-                    placeholder="Nombre completo" required
+                    placeholder="Nombre completo *" required
                     value={formCandidato.nombre}
                     onChange={e => setFormCandidato({ ...formCandidato, nombre: e.target.value })}
                   />
                   <input
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
-                    placeholder="Partido / Lista" required
-                    value={formCandidato.partido}
-                    onChange={e => setFormCandidato({ ...formCandidato, partido: e.target.value })}
+                    placeholder="Carrera (ej. Ingeniería en Sistemas)"
+                    value={formCandidato.carrera}
+                    onChange={e => setFormCandidato({ ...formCandidato, carrera: e.target.value })}
+                  />
+                  <input
+                    className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
+                    placeholder="Semestre (ej. 6° Semestre)"
+                    value={formCandidato.semestre}
+                    onChange={e => setFormCandidato({ ...formCandidato, semestre: e.target.value })}
+                  />
+                  <input
+                    className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange"
+                    placeholder="URL de foto (opcional)"
+                    value={formCandidato.foto}
+                    onChange={e => setFormCandidato({ ...formCandidato, foto: e.target.value })}
                   />
                   <textarea
                     className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange sm:col-span-2"
-                    placeholder="Propuesta / Descripción" rows={3}
+                    placeholder="Propuesta / Plan de trabajo" rows={3}
                     value={formCandidato.descripcion}
                     onChange={e => setFormCandidato({ ...formCandidato, descripcion: e.target.value })}
+                  />
+                  <textarea
+                    className="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-uat-orange sm:col-span-2"
+                    placeholder="Logros y experiencia (participaciones, actividades, reconocimientos...)" rows={2}
+                    value={formCandidato.logros}
+                    onChange={e => setFormCandidato({ ...formCandidato, logros: e.target.value })}
                   />
                   <button type="submit" className="sm:col-span-2 bg-uat-orange text-white font-bold py-2 rounded-lg hover:bg-uat-orange-light transition-colors">
                     Agregar Candidato
@@ -210,7 +228,7 @@ export default function AdminDashboard() {
                   <thead className="bg-uat-blue text-white">
                     <tr>
                       <th className="text-left px-4 py-3">Nombre</th>
-                      <th className="text-left px-4 py-3">Partido</th>
+                      <th className="text-left px-4 py-3">Carrera</th>
                       <th className="text-center px-4 py-3">Votos</th>
                       <th className="text-center px-4 py-3">Acciones</th>
                     </tr>
@@ -219,13 +237,10 @@ export default function AdminDashboard() {
                     {candidatos.map((c, i) => (
                       <tr key={c.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                         <td className="px-4 py-3 font-medium">{c.nombre}</td>
-                        <td className="px-4 py-3 text-uat-orange text-xs font-semibold">{c.partido}</td>
+                        <td className="px-4 py-3 text-xs text-gray-500">{c.carrera || '—'}</td>
                         <td className="px-4 py-3 text-center font-bold text-uat-blue">{c.votos || 0}</td>
                         <td className="px-4 py-3 text-center">
-                          <button
-                            onClick={() => eliminarCandidato(c.id)}
-                            className="bg-red-500 text-white text-xs px-3 py-1 rounded-lg hover:bg-red-600"
-                          >
+                          <button onClick={() => eliminarCandidato(c.id)} className="bg-red-500 text-white text-xs px-3 py-1 rounded-lg hover:bg-red-600">
                             Eliminar
                           </button>
                         </td>

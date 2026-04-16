@@ -105,14 +105,11 @@ export default function Login() {
             </button>
           </form>
 
-          {/* Usuarios de prueba */}
-          <div className="mt-5 border-t pt-4">
-            <p className="text-xs text-gray-400 text-center mb-2">Usuarios de prueba:</p>
-            <div className="text-xs text-gray-500 space-y-1 text-center">
-              <p><span className="font-semibold">Admin:</span> admin / admin123</p>
-              <p><span className="font-semibold">Alumno:</span> a2161150443 / alumno123</p>
-              <p><span className="font-semibold">Alumno:</span> a2223010012 / alumno123</p>
-            </div>
+          {/* Pie del formulario */}
+          <div className="mt-5 border-t pt-4 text-center">
+            <p className="text-xs text-gray-400">
+              Utiliza tus credenciales institucionales UAT
+            </p>
           </div>
         </div>
       </div>
