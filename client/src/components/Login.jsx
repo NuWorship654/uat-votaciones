@@ -31,9 +31,13 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <header>
-        <div className="bg-uat-blue px-4 py-2 flex items-center gap-3">
-          <img src="/logo-uat-2.png" alt="Escudo UAT" className="h-12 object-contain" />
-          <img src="/logo-uat.png" alt="UAT" className="h-12 object-contain" />
+        <div className="bg-uat-blue px-6 py-2 flex items-center gap-3">
+          {/* Logos con fondo blanco igual que el header principal */}
+          <div className="bg-white rounded-lg px-3 py-1 flex items-center gap-2">
+            <img src="/logo-uat-2.png" alt="Escudo UAT" className="h-10 object-contain" />
+            <div className="w-px bg-gray-300 h-7" />
+            <img src="/logo-uat.png" alt="UAT" className="h-10 object-contain" />
+          </div>
           <div className="border-l border-blue-400 pl-3">
             <p className="text-white font-bold text-sm">Sistema de Votaciones</p>
             <p className="text-blue-200 text-xs">Universidad Autónoma de Tamaulipas</p>
