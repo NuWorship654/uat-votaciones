@@ -30,14 +30,10 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      {/* Header */}
       <header>
-        <div className="bg-uat-blue px-6 py-2 flex items-center gap-3">
-          <div className="bg-white rounded-lg px-3 py-1 flex items-center gap-2">
-            <img src="/logo-uat-2.png" alt="Escudo UAT" className="h-10 object-contain" />
-            <div className="w-px bg-gray-300 h-8" />
-            <img src="/logo-uat.png" alt="UAT" className="h-10 object-contain" />
-          </div>
+        <div className="bg-uat-blue px-4 py-2 flex items-center gap-3">
+          <img src="/logo-uat-2.png" alt="Escudo UAT" className="h-12 object-contain" />
+          <img src="/logo-uat.png" alt="UAT" className="h-12 object-contain" />
           <div className="border-l border-blue-400 pl-3">
             <p className="text-white font-bold text-sm">Sistema de Votaciones</p>
             <p className="text-blue-200 text-xs">Universidad Autónoma de Tamaulipas</p>
@@ -48,12 +44,10 @@ export default function Login() {
         </div>
       </header>
 
-      {/* Formulario */}
       <div className="flex-1 flex items-center justify-center px-4 py-10">
         <div className="bg-white rounded-2xl shadow-lg w-full max-w-sm p-8">
-          {/* Logos centrados */}
           <div className="flex flex-col items-center mb-6">
-            <div className="bg-white border border-gray-100 rounded-xl px-4 py-2 flex items-center gap-3 mb-4 shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
               <img src="/logo-uat-2.png" alt="Escudo UAT" className="h-14 object-contain" />
               <div className="w-px bg-gray-200 h-10" />
               <img src="/logo-uat.png" alt="UAT" className="h-14 object-contain" />
@@ -105,7 +99,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="bg-uat-blue py-3 text-center">
         <div className="bg-uat-orange h-1 mb-3" />
         <p className="text-blue-200 text-xs">© Universidad Autónoma de Tamaulipas · Sistema de Votaciones Estudiantiles</p>
